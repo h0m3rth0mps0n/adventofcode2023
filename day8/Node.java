@@ -40,4 +40,10 @@ public class Node {
                 right + ')';
 
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(! (obj instanceof Node) ) return false;
+        return ((Node) obj).getName().equals(getName());
+    }
 }
