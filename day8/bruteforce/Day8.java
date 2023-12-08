@@ -1,4 +1,4 @@
-package adventofcode2023.day8;
+package adventofcode2023.day8.bruteforce;
 
 import adventofcode2022.Util;
 
