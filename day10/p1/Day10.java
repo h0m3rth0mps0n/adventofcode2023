@@ -1,4 +1,4 @@
-package adventofcode2023.day10;
+package adventofcode2023.day10.p1;
 
 import adventofcode2022.Util;
 
@@ -9,16 +9,20 @@ public class Day10 {
         List<String> input = Util.getResourceLines("2023/day10sample.txt");
 //        List<String> input = Util.getResourceLines("2023/day10.txt");
 
-        part1();
-        part2();
+        part1(input);
+        part2(input);
     }
 
-    public static void part1() {
+    public static void part1(List<String> input) {
         System.out.println("Part 1:");
+        System.out.println(new Sketch(input).traverse() / 2);
     }
 
-    public static void part2() {
+    public static void part2(List<String> input) {
         System.out.println("Part 2:");
+        Sketch sketch = new Sketch(input);
+        sketch.traverse();
+        sketch.printLoop();
     }
 
 }
