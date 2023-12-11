@@ -4,11 +4,13 @@ public class VisitedTile {
     private Tile tile;
     private boolean visited;
     private boolean isStart;
+    private boolean filled;
 
     public VisitedTile(Tile tile) {
         this.tile = tile;
         isStart = tile == Tile.START;
         visited = false;
+        filled = false;
     }
 
     public boolean isStart() {
@@ -33,7 +35,8 @@ public class VisitedTile {
 
     @Override
     public String toString() {
-        return tile.toString();
+        return visited ? getTile().toString() :
+                filled ? "O" : "I";
     }
 
     public boolean connectsNorth() {
@@ -60,5 +63,23 @@ public class VisitedTile {
             case WEST: return connectsWest();
         }
         throw new UnsupportedOperationException("huh?");
+    }
+
+    public boolean isBlocked(Direction fromDirection) {
+        if(canVisit()) return false;
+
+        boolean connectsNorthSouth = tile.connectsSouth() || tile.connectsNorth();
+        boolean connectsEastWest = tile.connectsWest() || tile.connectsEast();
+        return
+                (connectsNorthSouth && fromDirection == Direction.EAST || fromDirection == Direction.WEST)
+                || (connectsEastWest && fromDirection == Direction.NORTH || fromDirection == Direction.SOUTH);
+    }
+
+    public void fill() {
+        filled = true;
+    }
+
+    public boolean isFilled() {
+        return filled;
     }
 }
